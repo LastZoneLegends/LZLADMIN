@@ -68,12 +68,16 @@ export default function Settings() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeTab, setActiveTab] = useState('general');
-  const [settings, setSettings] = useState({
+  const [settings, setSettings] = useState
+  const [form, setForm] = useState({
     appName: '',
     logoUrl: '',
     logoImage: '',
     minDeposit: '',
     minWithdrawal: '',
+    ZapApiKey: '',
+    ZapSecret: '',
+    ZapMinDeposit: '',
     referralBonus: '',
     supportEmail: '',
     supportPhone: '',
@@ -127,7 +131,7 @@ export default function Settings() {
       setLoading(false);
     }
   };
-
+  
   const handleSave = async () => {
     setSaving(true);
     try {
@@ -297,6 +301,40 @@ export default function Settings() {
                   quality={0.9}
                 />
               </div>
+
+              <div className="mt-4">
+  <label>Zap API Key</label>
+  <input
+    className="w-full p-2 border"
+    value={form.ZapApiKey}
+    onChange={(e) =>
+      setForm({ ...form, ZapApiKey: e.target.value })
+    }
+  />
+</div>
+
+<div className="mt-4">
+  <label>Zap Secret Key</label>
+  <input
+    className="w-full p-2 border"
+    value={form.ZapSecret}
+    onChange={(e) =>
+      setForm({ ...form, ZapSecret: e.target.value })
+    }
+  />
+</div>
+
+<div className="mt-4">
+  <label>Minimum Deposit</label>
+  <input
+    type="number"
+    className="w-full p-2 border"
+    value={form.ZapMinDeposit}
+    onChange={(e) =>
+      setForm({ ...form, ZapMinDeposit: e.target.value })
+    }
+  />
+</div>
             </div>
           </div>
         </Card>
@@ -424,3 +462,4 @@ export default function Settings() {
     </div>
   );
 }
+
