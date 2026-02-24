@@ -222,6 +222,20 @@ export default function Notifications() {
               required
             />
 
+            <div className="mb-3">
+  <label className="text-sm text-gray-400">
+    Redirect URL (Optional)
+  </label>
+
+  <input
+    type="text"
+    placeholder="/wallet or /tournament/123"
+    value={url}
+    onChange={(e) => setUrl(e.target.value)}
+    className="w-full mt-1 p-2 rounded bg-dark-300 border border-dark-500 text-white"
+  />
+</div>
+
             <Select
               label="Target Audience"
               value={formData.target}
@@ -328,3 +342,4 @@ export default function Notifications() {
     </div>
   );
 }
+
