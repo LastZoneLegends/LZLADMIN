@@ -18,12 +18,12 @@ export default function Notifications() {
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
-  const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({
     title: '',
     message: '',
     target: 'all',
     tournamentId: '',
+    url: '',
     sendPush: true
   });
 
@@ -83,9 +83,9 @@ export default function Notifications() {
         notificationData.title,
         notificationData.message,
         {
-          id: notificationData.id,
-          url: '/notifications'
-        }
+  id: notificationData.id,
+  url: notificationData.url || '/'
+}
       );
 
       console.log('FCM Results:', results);
@@ -108,6 +108,7 @@ export default function Notifications() {
         message: formData.message,
         target: formData.target,
         tournamentId: formData.target === 'tournament' ? formData.tournamentId : null,
+        url: formData.url || '/',
         sendPush: formData.sendPush,
         sentAt: serverTimestamp(),
         createdAt: serverTimestamp()
@@ -231,8 +232,10 @@ export default function Notifications() {
   <input
     type="text"
     placeholder="/wallet or /tournament/123"
-    value={url}
-    onChange={(e) => setUrl(e.target.value)}
+    value={formData.url}
+onChange={(e) =>
+  setFormData({ ...formData, url: e.target.value })
+}
     className="w-full mt-1 p-2 rounded bg-dark-300 border border-dark-500 text-white"
   />
 </div>
@@ -343,5 +346,6 @@ export default function Notifications() {
     </div>
   );
 }
+
 
 
