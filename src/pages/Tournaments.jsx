@@ -444,10 +444,27 @@ export default function Tournaments() {
         const thirdWinner = participantResults.find(p => p.odeuId === winners.third);
 
         resultsData = {
-          first: firstWinner ? { odeuId: firstWinner.odeuId, name: firstWinner.odeuName, gameId: firstWinner.odeuGameId } : null,
-          second: secondWinner ? { odeuId: secondWinner.odeuId, name: secondWinner.odeuName, gameId: secondWinner.odeuGameId } : null,
-          third: thirdWinner ? { odeuId: thirdWinner.odeuId, name: thirdWinner.odeuName, gameId: thirdWinner.odeuGameId } : null,
-        };
+  first: firstWinner ? {
+    odeuId: firstWinner.odeuId,
+    odeuUserId: firstWinner.odeuUserId,   // ✅ ADD THIS
+    name: firstWinner.odeuName,
+    gameId: firstWinner.odeuGameId
+  } : null,
+
+  second: secondWinner ? {
+    odeuId: secondWinner.odeuId,
+    odeuUserId: secondWinner.odeuUserId,  // ✅ ADD THIS
+    name: secondWinner.odeuName,
+    gameId: secondWinner.odeuGameId
+  } : null,
+
+  third: thirdWinner ? {
+    odeuId: thirdWinner.odeuId,
+    odeuUserId: thirdWinner.odeuUserId,   // ✅ ADD THIS
+    name: thirdWinner.odeuName,
+    gameId: thirdWinner.odeuGameId
+  } : null
+};
       }
 
       // Update tournament with results
@@ -1121,3 +1138,4 @@ export default function Tournaments() {
     </div>
   );
 }
+
