@@ -18,6 +18,7 @@ export default function Notifications() {
   const [tournaments, setTournaments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
+  const [url, setUrl] = useState("");
   const [formData, setFormData] = useState({
     title: '',
     message: '',
@@ -342,4 +343,5 @@ export default function Notifications() {
     </div>
   );
 }
+
 
