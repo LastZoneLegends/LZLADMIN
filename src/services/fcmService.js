@@ -106,26 +106,24 @@ export const sendPushNotification = async (fcmToken, title, body, data = {}) => 
     const accessToken = await getAccessToken();
 
     const message = {
-      message: {
-        token: fcmToken,
-        notification: { title, body },
-        data: Object.fromEntries(
-          Object.entries(data).map(([k, v]) => [k, String(v)])
-        ),
-        android: {
-          priority: 'high',
-          notification: {
-            sound: 'default',
-            channel_id: 'default',
-          },
-        },
-        apns: {
-          payload: {
-            aps: { sound: 'default' },
-          },
-        },
-      },
-    };
+  message: {
+    token: fcmToken,
+
+    // ❌ notification block completely hata do
+
+    data: {
+      title: title,
+      body: body,
+      ...Object.fromEntries(
+        Object.entries(data).map(([k, v]) => [k, String(v)])
+      )
+    },
+
+    android: {
+      priority: 'high'
+    }
+  }
+};
 
     const response = await fetch(
       `https://fcm.googleapis.com/v1/projects/${FCM_PROJECT_ID}/messages:send`,
@@ -184,3 +182,4 @@ export const isFcmConfigured = () => {
 };
 
 export default { sendPushNotification, sendPushToMultipleTokens, isFcmConfigured };
+
